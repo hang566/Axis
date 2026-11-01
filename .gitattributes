@@ -1,0 +1,25 @@
+# 行尾：源码统一 LF；Windows 批处理必须保留 CRLF，否则 cmd 会吃掉换行
+* text=auto eol=lf
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# 二进制资源：禁止 diff / 转换
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mp3 binary
+*.mp4 binary
+*.mov binary
+*.wav binary
+*.exe binary
+
+# 语言统计：模型权重与倒出的大文件不计入语言占比
+*.onnx binary linguist-generated
+models/** binary linguist-generated
+
+# 语言统计：介绍页与截图属于文档，不计入语言占比
+docs/** linguist-documentation
+site/** linguist-documentation

@@ -1,0 +1,46 @@
+# 视听工作台配置
+#
+# 日常使用不需要改这个文件：界面里的调整会保存到 data/settings.json。
+# 这里只放「出厂默认」，适合打包分发或在多台机器上统一部署。
+
+general:
+  ffmpeg_path: "ffmpeg"     # 留空/PATH 找不到时会自动探测 ffmpeg*\bin\ffmpeg.exe
+  models_dir: "models"      # 模型目录（相对程序目录）
+  data_dir: ""              # 元数据目录；留空 = 程序目录下的 data（library.db / settings.json）
+  project_dir: ""           # 内容目录（素材/项目/任务/临时文件）；留空 = data 同级的 project/
+  work_dir: ""              # 临时目录父级；留空使用 data/temp
+  concurrency: 1            # 分片并行数
+  progress: true
+  verbose: false
+
+audio:
+  sample_rate: 16000        # 识别引擎输入采样率
+  channels: 1
+  chunk_seconds: 0          # 0 = 自动（界面默认 15 分钟分段）
+
+stt:
+  provider: "local"         # local | remote | cli（界面里也可切换）
+  language: ""              # 空 = 自动检测
+  model_id: ""              # 空 = 自动选择已下载的最佳模型
+  timeout: 30m
+
+  # 在线接口（provider=remote 时使用，也可在界面里填写）
+  endpoint: "https://api.openai.com/v1/audio/transcriptions"
+  api_key_env: "OPENAI_API_KEY"
+  model: "whisper-1"
+
+  # 命令行引擎（provider=cli 时使用，适配 whisper.cpp 等）
+  command: "whisper-cli"
+  args: "-m {model} -f {audio} -l {language} -oj -of {out}"
+  output_file: "{out}.json"
+
+subtitle:
+  format: "srt"
+  max_line_length: 42
+  max_lines: 2
+  max_chars_per_cue: 84
+  max_duration: 6s
+  min_duration: 700ms
+  max_pause: 1500ms
+  sentence_merge: true
+  strip_punctuation: true

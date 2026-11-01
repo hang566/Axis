@@ -1,0 +1,52 @@
+# ===== 运行数据（本地生成，不入库）=====
+# 元数据目录：源码包在 data/data.go，只忽略它的运行产物
+data/logs/
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/*.json
+data/*.json.*
+# 内容目录：素材 / 项目 / 任务 / 缩略图 / 回收站（可由 config.yaml 改到任意位置）
+project/
+
+# ===== 构建产物 =====
+*.exe
+*.exe.bak
+*.exe.old
+*.old.exe
+*.test
+*.out
+
+# ===== 大体积第三方组件（按需解压或「模型中心」下载，不入库）=====
+ffmpeg/
+ffmpeg-master-latest-win64-gpl/
+ffmpeg-*.zip
+models/*
+!models/README.md
+
+# ===== 旧版本遗留（已被新架构取代）=====
+hayamimi-main/
+提示词.txt
+mock_asr.ps1
+test_config.yaml
+
+# ===== 临时素材与输出 =====
+test_media.mp4
+noaudio.mp4
+out_clip.mp4
+svr_clip.mp4
+*.srt
+*.log
+*.tmp
+.screenshots/
+.serve-out.log
+.serve-err.log
+
+# ===== 编辑器 / 系统 =====
+.idea/
+.vscode/
+.codebuddy/
+.trae/
+.DS_Store
+Thumbs.db
+desktop.ini
